@@ -8,7 +8,7 @@ To run with no protections in place, the code can be compiled with the following
 
 ```
 echo 0 | sudo tee /proc/sys/kernel/randomize_va_space
-gcc -fno-stack-protector -no-pie -o vuln vulnerable.c
+gcc -fno-stack-protector -z execstack -no-pie -o vuln vulnerable.c
 ```
 
 ## Tracing Script v0.0.1
