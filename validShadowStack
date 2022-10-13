@@ -1,6 +1,5 @@
 execve
 brk
-arch_prctl
 access
 openat
 fstat
@@ -8,15 +7,10 @@ mmap
 close
 openat
 read
-pread64
-pread64
-pread64
 fstat
 mmap
-pread64
-pread64
-pread64
 mmap
+mprotect
 mmap
 mmap
 mmap

@@ -3,7 +3,8 @@ import argparse
 import re
 
 def runPeekabooInstrumentation():
-    print("Replace me")
+    command = "dynamorio/build/bin64/drrun -c peekaboo/peekaboo_dr/build/libpeekaboo_dr.so -- "
+    os.system(command + "./vuln < validInput")
 
 def saveValidShadowStack(shadowStack):
     with open('validShadowStack', 'w') as f:
