@@ -1,0 +1,6 @@
+# Prevent committing of vulnerable binary. (Temporary)
+vuln*
+
+# Prevent committing generated files
+*Input
+*Strace
