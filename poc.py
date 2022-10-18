@@ -23,25 +23,36 @@ DEFAULT_TERMINATION_MESSAGE = "[!] Program will be terminated"
 
 # List of global variables
 list_default_syscalls = []
+list_user_syscalls = []
 
 
-def sanitizeSyscalls(syscall_output):
+def createUserCase(program_name, user_arguments):
+    """
+    Creation of program list with user provided arguments that will be eventually passed to run strace
+    :param program_name: (str) name of the program 
+    :param user_arguments: (list) list of arguments provided by the user 
+    """
+    return [STRACE_PROGRAM_STRING, program_name] + user_arguments
+
+
+def sanitizeSyscalls(syscall_output, list_to_record):
     """
     Takes the syscall outputs, sanitizes them and puts it into a list that is 
     stored globally.
     :param arguments: (str) raw string of raw syscall output 
+    :param list_to_record: (list) list where the syscalls will be appended to 
     :returns: None
     """
     # Parse each line of syscall output based on new line
     # Given that each line is likely SYSCALL_NAME(BLAH BLAH)
     # We split by ( and take the first element
     for line in syscall_output.split(NEW_LINE_DELIM):
-        list_default_syscalls.append(line.split(LEFT_PARENTHESIS_DELIM)[INDEX_OF_SYSCALL_NAME])
+        list_to_record.append(line.split(LEFT_PARENTHESIS_DELIM)[INDEX_OF_SYSCALL_NAME])
     
     # We remove the last one from the list as we do not want the exit code
-    list_default_syscalls.pop()
+    list_to_record.pop()
 
-    print(list_default_syscalls)
+    print(list_to_record)
 
 
 def runStraceProgram(arguments):
@@ -64,7 +75,8 @@ def runStraceProgram(arguments):
 
 def createBaseCase(program_name):
     """
-    Creation of program list with arguments that will be eventually passed to run strace
+    Creation of program list with default arguments that will be eventually passed to run strace
+    :param program_name: (str) name of the program 
     """
     return [STRACE_PROGRAM_STRING, program_name, DEFAULT_TESTING_VALUE]
 
@@ -115,9 +127,16 @@ def main():
         sys.exit(1)
 
     filepath = getAbsoluteFilepath(filepath)
-    default_arguments = createBaseCase(filepath)
-    default_output = runStraceProgram(default_arguments)
-    sanitizeSyscalls(default_output)
+    default_case = createBaseCase(filepath)
+    default_output = runStraceProgram(default_case)
+    sanitizeSyscalls(default_output, list_default_syscalls)
+
+    user_case = createUserCase(filepath, user_arguments)
+    user_output = runStraceProgram(user_case)
+    sanitizeSyscalls(user_output, list_user_syscalls)
+
+    // TODO: Comparison between the 2 syscall list_user_syscalls
+    // Testing to make sure the above poc.py works with creating another stack 
     
     
     
