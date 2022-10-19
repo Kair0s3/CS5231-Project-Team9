@@ -4,3 +4,8 @@ vuln*
 # Prevent committing generated files
 *Input
 *Strace
+
+.gdb*
+input
+stdin
+peda*
