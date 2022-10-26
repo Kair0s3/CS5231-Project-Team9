@@ -64,8 +64,6 @@ def createModifiedCase():
 			continue
 		gcc_cmd += " " + gcc_md_flags[flag]
 
-	
-
 	print("creating executable: modified")
 
 	if hasAslr == 1:
