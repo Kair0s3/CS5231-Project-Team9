@@ -1,3 +1,7 @@
 /home/ubuntu/Desktop/cs5231_tp_repo/stackguard_analysis/vulnerable.c
 /home/ubuntu/Desktop/dynamorio/build/bin64/drrun
 /home/ubuntu/Desktop/peekaboo-master/peekaboo_dr/build/libpeekaboo_dr.so
+/home/ubuntu/Desktop/peekaboo-master/read_trace
+/home/ubuntu/Desktop/cs5231_tp_repo/stackguard_analysis/base-13027-8s/13027/
+/home/ubuntu/Desktop/cs5231_tp_repo/stackguard_analysis/modified-13114-8As/13114/
+/home/ubuntu/Desktop/cs5231_tp_repo/stackguard_analysis/modified-13328-1400As/13328/
