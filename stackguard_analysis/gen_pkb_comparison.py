@@ -23,7 +23,7 @@ def createBaseCase():
 	gcc_base_cmd = "gcc -g"
 	gcc_executable_base_name = "base"
 
-	genereateBase = input("Do you want to generate peekaboo trace with no mem-def (i.e., base case) as well? [Y|n] ")
+	genereateBase = input("[#] Do you want to generate peekaboo trace with no mem-def (i.e., base case)? [Y|n] ")
 
 	if(genereateBase == 'Y'):
 		for i in range(4):
@@ -50,7 +50,7 @@ def createModifiedCase():
 	hasAslr = 0
 	gcc_executable_modified_name = "modified"
 
-	print("Choose which memory defences to remove")
+	print("\nChoose which memory defences to remove for the modified version...")
 	print("[0] RELRO -- [1] CANARY -- [2] NX -- [3] PIE -- [4] disable ASLR -- [5] enable ASLR\n")
 
 	selected_gcc_flags = input("[#] Enter defence to remove (e.g., 12 == canary + nx): ")
