@@ -1,0 +1,3 @@
+/home/ubuntu/Desktop/cs5231_tp_repo/stackguard_analysis/vulnerable.c
+/home/ubuntu/Desktop/dynamorio/build/bin64/drrun
+/home/ubuntu/Desktop/peekaboo-master/peekaboo_dr/build/libpeekaboo_dr.so
