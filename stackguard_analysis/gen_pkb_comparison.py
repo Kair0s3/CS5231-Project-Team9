@@ -180,58 +180,6 @@ def compareSyscall():
 		print(filepaths[3] + " -y " + filepaths[6])
 		os.system(filepaths[3] + " -y " + filepaths[6] + " > " + modified2_syscall_filename)
 
-	#with open(base_syscall_filename) as f:
-	#	base_syscalls = [line.rstrip() for line in f]
-
-	#with open(modified1_syscall_filename) as f:
-	#	modified1_syscalls = [line.rstrip() for line in f]
-
-	#with open(modified2_syscall_filename) as f:
-	#	modified2_syscalls = [line.rstrip() for line in f]
-
-	# ---------------------------------------------
-	# Generate syscall_diff_summary
-	# ---------------------------------------------
-	
-	# clean up syscalls (remove inst id)
-	#line_iterator = 0
-	#del base_syscalls[0:3]
-	#del base_syscalls[-1]
-
-	#base_syscalls_num_lines = len(base_syscalls)
-	#while line_iterator < base_syscalls_num_lines:
-	#	index = base_syscalls[line_iterator].find(']') + 1
-	#	base_syscalls[line_iterator] = base_syscalls[line_iterator][index:].lstrip()
-	#	line_iterator += 1
-		
-	#line_iterator = 0
-	#del modified1_syscalls[0:3]
-	#del modified1_syscalls[-1]
-
-	#modified1_syscalls_num_lines = len(modified1_syscalls)
-	#while line_iterator < modified1_syscalls_num_lines:
-	#	index = modified1_syscalls[line_iterator].find(']') + 1
-	#	modified1_syscalls[line_iterator] = modified1_syscalls[line_iterator][index:].lstrip()
-	#	line_iterator += 1
-
-	#line_iterator = 0
-	#del modified2_syscalls[0:3]
-	#del modified2_syscalls[-1]
-
-	#modified2_syscalls_num_lines = len(modified2_syscalls)
-	#while line_iterator < modified2_syscalls_num_lines:
-	#	index = modified2_syscalls[line_iterator].find(']') + 1
-	#	modified2_syscalls[line_iterator] = modified2_syscalls[line_iterator][index:].lstrip()
-	#	line_iterator += 1
-
-	# base vs modified1		
-
-	# base vs modified2
-
-	# modified1 vs modified2
-
-
-
 
 if __name__ == "__main__":
 
