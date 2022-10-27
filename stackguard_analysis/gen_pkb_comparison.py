@@ -100,6 +100,60 @@ def createModifiedCase():
 		os.system(peekaboo_cmd_modified)
 
 
+def compareInstructions():
+
+	# ---------------------------------------------
+	# Create instruction dump of all trace files
+	# ---------------------------------------------
+
+	base_inst_filename = "allInst_compare/base_inst.txt"
+	modified1_inst_filename = "allInst_compare/noOverflow_inst.txt"
+	modified2_inst_filename = "allInst_compare/withOverflow_inst.txt"
+
+	generateInstFiles = input("[#] Do you want to generate peekaboo all instructions files? [Y|n] ")
+
+	if(generateInstFiles == 'Y'):
+
+		# base
+		print(filepaths[3] + " " + filepaths[4])
+		os.system(filepaths[3] + " " + filepaths[4] + " > " + base_inst_filename)
+
+		# modified1 (no overflow)
+		print(filepaths[3] + " " + filepaths[5])
+		os.system(filepaths[3] + " " + filepaths[5] + " > " + modified1_inst_filename)
+
+		# modified2 (with overflow)
+		print(filepaths[3] + " " + filepaths[6])
+		os.system(filepaths[3] + " " + filepaths[6] + " > " + modified2_inst_filename)
+
+
+	generateRangeInstFiles = input("[#] Do you want to generate peekaboo range of instructions files? [Y|n] ")
+
+	if(generateRangeInstFiles == 'Y'):
+
+		getRange = input("[#] Please specify your instruction range (e.g., 100-105): ")
+
+		base_inst_filename = "rangeInst_compare/base_inst_" + getRange + ".txt"
+		modified1_inst_filename = "rangeInst_compare/noOverflow_inst_" + getRange + ".txt"
+		modified2_inst_filename = "rangeInst_compare/withOverflow_inst_" + getRange + ".txt"
+
+		getRangeToken = getRange.split('-')
+
+		print(getRangeToken)
+
+		# base
+		print(filepaths[3] + " -s " + getRangeToken[0] + " -e " + getRangeToken[1] + " " + filepaths[4])
+		os.system(filepaths[3] + " -s " + getRangeToken[0] + " -e " + getRangeToken[1] + " " + filepaths[4] + " > " + base_inst_filename)
+
+		# modified1 (no overflow)
+		print(filepaths[3] + " -s " + getRangeToken[0] + " -e " + getRangeToken[1] + " " + filepaths[5])
+		os.system(filepaths[3] + " -s " + getRangeToken[0] + " -e " + getRangeToken[1] + " " + filepaths[5] + " > " + modified1_inst_filename)
+
+		# modified2 (with overflow)
+		print(filepaths[3] + " -s " + getRangeToken[0] + " -e " + getRangeToken[1] + " " + filepaths[6])
+		os.system(filepaths[3] + " -s " + getRangeToken[0] + " -e " + getRangeToken[1] + " " + filepaths[6] + " > " + modified2_inst_filename)
+
+
 def compareSyscall():
 
 	# ---------------------------------------------
@@ -126,49 +180,49 @@ def compareSyscall():
 		print(filepaths[3] + " -y " + filepaths[6])
 		os.system(filepaths[3] + " -y " + filepaths[6] + " > " + modified2_syscall_filename)
 
-	with open(base_syscall_filename) as f:
-		base_syscalls = [line.rstrip() for line in f]
+	#with open(base_syscall_filename) as f:
+	#	base_syscalls = [line.rstrip() for line in f]
 
-	with open(modified1_syscall_filename) as f:
-		modified1_syscalls = [line.rstrip() for line in f]
+	#with open(modified1_syscall_filename) as f:
+	#	modified1_syscalls = [line.rstrip() for line in f]
 
-	with open(modified2_syscall_filename) as f:
-		modified2_syscalls = [line.rstrip() for line in f]
+	#with open(modified2_syscall_filename) as f:
+	#	modified2_syscalls = [line.rstrip() for line in f]
 
 	# ---------------------------------------------
 	# Generate syscall_diff_summary
 	# ---------------------------------------------
 	
 	# clean up syscalls (remove inst id)
-	line_iterator = 0
-	del base_syscalls[0:3]
-	del base_syscalls[-1]
+	#line_iterator = 0
+	#del base_syscalls[0:3]
+	#del base_syscalls[-1]
 
-	base_syscalls_num_lines = len(base_syscalls)
-	while line_iterator < base_syscalls_num_lines:
-		index = base_syscalls[line_iterator].find(']') + 1
-		base_syscalls[line_iterator] = base_syscalls[line_iterator][index:].lstrip()
-		line_iterator += 1
+	#base_syscalls_num_lines = len(base_syscalls)
+	#while line_iterator < base_syscalls_num_lines:
+	#	index = base_syscalls[line_iterator].find(']') + 1
+	#	base_syscalls[line_iterator] = base_syscalls[line_iterator][index:].lstrip()
+	#	line_iterator += 1
 		
-	line_iterator = 0
-	del modified1_syscalls[0:3]
-	del modified1_syscalls[-1]
+	#line_iterator = 0
+	#del modified1_syscalls[0:3]
+	#del modified1_syscalls[-1]
 
-	modified1_syscalls_num_lines = len(modified1_syscalls)
-	while line_iterator < modified1_syscalls_num_lines:
-		index = modified1_syscalls[line_iterator].find(']') + 1
-		modified1_syscalls[line_iterator] = modified1_syscalls[line_iterator][index:].lstrip()
-		line_iterator += 1
+	#modified1_syscalls_num_lines = len(modified1_syscalls)
+	#while line_iterator < modified1_syscalls_num_lines:
+	#	index = modified1_syscalls[line_iterator].find(']') + 1
+	#	modified1_syscalls[line_iterator] = modified1_syscalls[line_iterator][index:].lstrip()
+	#	line_iterator += 1
 
-	line_iterator = 0
-	del modified2_syscalls[0:3]
-	del modified2_syscalls[-1]
+	#line_iterator = 0
+	#del modified2_syscalls[0:3]
+	#del modified2_syscalls[-1]
 
-	modified2_syscalls_num_lines = len(modified2_syscalls)
-	while line_iterator < modified2_syscalls_num_lines:
-		index = modified2_syscalls[line_iterator].find(']') + 1
-		modified2_syscalls[line_iterator] = modified2_syscalls[line_iterator][index:].lstrip()
-		line_iterator += 1
+	#modified2_syscalls_num_lines = len(modified2_syscalls)
+	#while line_iterator < modified2_syscalls_num_lines:
+	#	index = modified2_syscalls[line_iterator].find(']') + 1
+	#	modified2_syscalls[line_iterator] = modified2_syscalls[line_iterator][index:].lstrip()
+	#	line_iterator += 1
 
 	# base vs modified1		
 
@@ -186,4 +240,5 @@ if __name__ == "__main__":
 	createModifiedCase()
 
 	# run read_trace analysis
+	compareInstructions()
 	compareSyscall()
