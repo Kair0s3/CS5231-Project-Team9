@@ -1,5 +1,6 @@
 # Prevent committing of vulnerable binary. (Temporary)
 vuln*
+nodef_vuln*
 
 # Prevent committing generated files
 *Input
